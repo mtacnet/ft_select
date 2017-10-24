@@ -6,11 +6,11 @@
 #    By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/11 14:50:14 by mtacnet           #+#    #+#              #
-#    Updated: 2017/10/05 11:36:26 by mtacnet          ###   ########.fr        #
+#    Updated: 2017/10/24 12:32:56 by mtacnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= projet
+NAME		= ft_select
 
 GREEN		= "\033[32m"
 RESET		= "\033[0m"
@@ -24,12 +24,6 @@ OBJ			= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 
-# mlx library
-#MLX			= ./miniLibX/
-#MLX_LIB		= $(addprefix $(MLX),mlx.a)
-#MLX_INC		= -I ./miniLibX
-#MLX_LNK		= -L ./miniLibX -l mlx -framework OpenGL -framework AppKit
-
 # ft library
 FT			= ./libft/
 FT_LIB 		= $(addprefix $(FT),libft.a)
@@ -41,33 +35,30 @@ SRCDIR		= ./src/
 INCDIR		= ./includes/
 OBJDIR		= ./obj/
 
-all: obj $(FT_LIB) $(NAME) #$(MLX_LIB)
+all: obj $(FT_LIB) $(NAME)
 
 obj:
 		@mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
 		$(CC) $(CFLAGS) $(FT_INC) -I $(INCDIR) -o $@ -c $<
-# For MLX add $(MLX_INC) in the line sup after CFLAGS
 
 $(FT_LIB):
 		@make -C $(FT)
 
-#$(MLX_LIB):
-#		@make -C $(MLX)
-
-$(NAME): $(OBJ)
-		@$(CC) $(OBJ) $(FT_LNK) -lm -o $(NAME) #(MLX_LNK)
+$(NAME):$(OBJ)
+		@$(CC) $(OBJ) $(FT_LNK) -lm -o $(NAME)
 		@echo $(GREEN)"Compilation done !" $(RESET)
 
 clean:
 		@rm -rf $(OBJDIR)
 		@make -C $(FT) clean
-#		@make -C $(MLX) clean
+		@echo $(GREEN)"clean OK" $(RESET)
 
 fclean: clean
 		@rm -rf $(NAME)
 		@make -C $(FT) fclean
+		@echo $(GREEN)"fclean OK" $(RESET)
 
 re: fclean all
 

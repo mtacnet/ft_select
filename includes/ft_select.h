@@ -6,14 +6,15 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 13:32:22 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/05 11:32:15 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/24 11:46:54 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROJET_H
-# define PROJET_H
+#ifndef FT_SELECT_H
+# define FT_SELECT_H
 
 # include "../libft/libft.h"
+# include <term.h>
 
 /*
 ** MAIN FUNCTIONS
