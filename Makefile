@@ -6,7 +6,7 @@
 #    By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/11 14:50:14 by mtacnet           #+#    #+#              #
-#    Updated: 2017/10/24 12:32:56 by mtacnet          ###   ########.fr        #
+#    Updated: 2017/10/30 13:07:30 by mtacnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ GREEN		= "\033[32m"
 RESET		= "\033[0m"
 
 # src / obj files
-SRC			= 	main.c \
+SRC			= main.c \
 
 OBJ			= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
@@ -28,7 +28,7 @@ CFLAGS		= -Wall -Wextra -Werror
 FT			= ./libft/
 FT_LIB 		= $(addprefix $(FT),libft.a)
 FT_INC 		= -I ./libft
-FT_LNK 		= -L ./libft -l ft
+FT_LNK 		= -L ./libft -l ft -ltermcap
 
 # directories
 SRCDIR		= ./src/

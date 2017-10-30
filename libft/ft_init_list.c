@@ -6,7 +6,7 @@
 /*   By: mtacnet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 11:12:48 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/09/01 14:13:52 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/30 13:12:19 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int			is_empty(t_elem **lst)
 
 t_elem		*init_element(t_elem *element)
 {
-	element = (t_elem*)malloc(sizeof(t_elem));
-	if (element == NULL)
+	if (!(element = (t_elem*)malloc(sizeof(t_elem))))
 	{
 		ft_putendl("MEMORY ALLOCATION ERROR");
 		exit(EXIT_FAILURE);
 	}
 	element->content = NULL;
 	element->next = NULL;
+	element->prev = NULL;
 	return (element);
 }
 

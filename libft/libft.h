@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 13:26:34 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/04 10:43:04 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/30 13:11:38 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct		s_elem
 {
 	char			*content;
 	struct s_elem	*next;
+	struct s_elem	*prev;
+	struct termios	*term;
 }					t_elem;
 
 /*
