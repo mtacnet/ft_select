@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projet.h                                           :+:      :+:    :+:   */
+/*   ft_select.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 13:32:22 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/31 14:44:02 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/31 14:55:44 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define FT_SELECT_H
 
 # include "../libft/libft.h"
-# include <termios.h>
-# include <term.h>
-# include <curses.h>
+# include "./list.h"
+
 /*
 ** MAIN_FUNCTIONS
 */

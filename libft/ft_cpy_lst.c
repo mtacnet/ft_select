@@ -6,11 +6,12 @@
 /*   By: mtacnet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 14:15:38 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/09/01 14:16:10 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/31 14:59:04 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../includes/list.h"
 
 void	cpy_lst(t_elem **lst_dest, t_elem **lst_src)
 {

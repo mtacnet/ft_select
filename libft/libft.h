@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 13:26:34 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/31 14:43:58 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/31 14:57:05 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <dirent.h>
-# include "../includes/list.h"
 
 /*
 	** STRUCTURE T_LIST

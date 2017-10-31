@@ -6,22 +6,23 @@
 /*   By: mtacnet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 11:30:32 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/31 14:29:06 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/31 15:00:39 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../includes/list.h"
 
 char	**list_to_tab(t_elem **lst)
 {
 	int			i;
 	size_t		j;
-	char		**tab;
+	char		**array;
 	t_elem		*head;
 
 	i = 0;
 	j = 0;
-	tab = NULL;
+	array = NULL;
 	head = (*lst);
 	while ((*lst) != NULL)
 	{
@@ -29,38 +30,38 @@ char	**list_to_tab(t_elem **lst)
 		(*lst) = (*lst)->next;
 	}
 	(*lst) = head;
-	if (!(tab = ft_memalloc(sizeof(*tab) * (j + 1))))
+	if (!(array = ft_memalloc(sizeof(*array) * (j + 1))))
 		exit(EXIT_FAILURE);
 	while ((*lst) != NULL)
 	{
-		tab[i] = (*lst)->content;
+		array[i] = (*lst)->content;
 		(*lst) = (*lst)->next;
 		i++;
 	}
 	(*lst) = head;
-	return (tab);
+	return (array);
 }
 
-void	tab_to_list(t_elem **lst, char **tab)
+void	tab_to_list(t_elem **lst, char **array)
 {
 	int		i;
 
 	i = 0;
-	while (tab[i] && tab[i][0] != '\0')
+	while (array[i] && array[i][0] != '\0')
 	{
-		push_elem(lst, tab[i]);
+		push_elem(lst, array[i]);
 		i++;
 	}
 }
 
-void	supp_elem_tab(char **tab, int value)
+void	supp_elem_tab(char **array, int value)
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	while (tab[i] && tab[i][0] != '\0')
+	while (array[i] && array[i][0] != '\0')
 		i++;
 	if (value >= i)
 		return ;
@@ -68,28 +69,28 @@ void	supp_elem_tab(char **tab, int value)
 	{
 		while (j < i)
 		{
-			tab[j] = tab[j + 1];
+			array[j] = array[j + 1];
 			j++;
 		}
 	}
 	return ;
 }
 
-void	free_tab(char **tab)
+void	free_tab(char **array)
 {
 	int		i;
 
 	i = 0;
-	while (tab[i])
+	while (array[i])
 	{
-		if (tab[i] != NULL)
+		if (array[i] != NULL)
 		{
-			ft_strdel(&(tab[i]));
+			ft_strdel(&(array[i]));
 			i++;
 		}
 		else
 			i++;
 	}
-	free(tab);
-	tab = NULL;
+	free(array);
+	array = NULL;
 }

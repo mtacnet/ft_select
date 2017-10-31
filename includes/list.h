@@ -6,16 +6,22 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 14:35:26 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/31 14:42:24 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/31 14:55:38 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#ifndef LIST_H
+# define LIST_H
+
+# include <termios.h>
+# include <term.h>
+# include <curses.h>
 
 typedef struct		s_elem
 {
 	char			*content;
 	struct s_elem	*next;
+	struct termios	term;
 }					t_elem;
 
 /*
@@ -37,4 +43,6 @@ int					is_empty(t_elem **lst);
  * */
 
 char				**list_to_tab(t_elem **lst);
-void				tab_to_list(t_elem **lst, char **tab);
+void				tab_to_list(t_elem **lst, char **array);
+
+#endif

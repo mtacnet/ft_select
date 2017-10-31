@@ -6,11 +6,12 @@
 /*   By: mtacnet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 14:14:44 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/09/01 14:15:20 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/31 14:58:44 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../includes/list.h"
 
 void	view_list(t_elem **lst)
 {

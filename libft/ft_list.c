@@ -6,11 +6,12 @@
 /*   By: mtacnet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 11:33:04 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/30 13:07:52 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/31 14:57:51 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../includes/list.h"
 
 void	push_elem(t_elem **lst, char *content)
 {
