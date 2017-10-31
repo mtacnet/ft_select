@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 13:26:34 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/30 13:52:12 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/31 14:43:58 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <dirent.h>
+# include "../includes/list.h"
 
 /*
 	** STRUCTURE T_LIST
@@ -40,12 +41,6 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-
-typedef struct		s_elem
-{
-	char			*content;
-	struct s_elem	*next;
-}					t_elem;
 
 /*
 ** FONCTIONS MEMORY
@@ -109,28 +104,17 @@ char				**ft_strsplit(char const *s, char c);
 ** FONCTIONS LIST
 */
 
-t_elem				*new_list(void);
-t_elem				*init_element(t_elem *element);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-void				push_elem(t_elem **lst, char *content);
-void				supp_elem(t_elem **lst, char *arg);
-void				push_back(t_elem **lst, char *content);
-void				view_list(t_elem **lst);
-void				cpy_lst(t_elem **lst_dest, t_elem **lst_src);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstrepel(t_list **alst, t_list *pnew);
-void				freelst(t_elem **lst);
-int					is_empty(t_elem **lst);
 
 /*
 ** FONCTIONS ARRAY
 */
 
-char				**list_to_tab(t_elem **lst);
-void				tab_to_list(t_elem **lst, char **tab);
 void				supp_elem_tab(char **tab, int value);
 void				free_tab(char **tab);
 void				view_tab(char **tab);
