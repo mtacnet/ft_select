@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 12:52:06 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/31 14:34:23 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/10/31 15:39:45 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		save_arg(t_elem **e, char **argv)
 int				main(int argc, char **argv)
 {
 	t_elem			*e;
-	struct termios	term;
+	struct termios	origin;
 	char			*name_term;
 
 	e = new_list();
@@ -47,12 +47,12 @@ int				main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		if (tgetent(NULL, name_term) == ERR)
 			return (EXIT_FAILURE);
-		if (tcgetattr(0, &term) == -1)
+		if (tcgetattr(0, &origin) == -1)
 			exit(EXIT_FAILURE);
 		save_arg(&e, argv);
-//		save_term(&term
-//		view_list(&e);
-//		core(&term, &e);
+		view_list(&e);
+		e->term = origin;
+	//	core(&origin, &e);
 	}
 	return (0);
 }
