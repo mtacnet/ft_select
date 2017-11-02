@@ -6,11 +6,13 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 12:52:06 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/31 15:39:45 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/02 15:36:05 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
+
+/* Stock la valeur de la variable d'environnement "TERM" dans name_term */
 
 static int		check_term(char **name_term)
 {
@@ -18,6 +20,8 @@ static int		check_term(char **name_term)
 		return (-1);
 	return (0);
 }
+
+/* Stocke les arguments dans la liste "e" de type t_elem */
 
 static void		save_arg(t_elem **e, char **argv)
 {
@@ -52,7 +56,7 @@ int				main(int argc, char **argv)
 		save_arg(&e, argv);
 		view_list(&e);
 		e->term = origin;
-	//	core(&origin, &e);
+		core(&origin, &e);
 	}
 	return (0);
 }
