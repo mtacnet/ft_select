@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 16:28:04 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/02 15:36:01 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/06 12:58:24 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,52 @@ void	term_mod(struct termios **origin)
 		exit(EXIT_FAILURE);
 }
 
-static void		clear_buffer(char *buffer)
+static void		clear_buff(char *buff)
 {
-	buffer[0] = 0;
-	buffer[1] = 0;
-	buffer[2] = 0;
-	buffer[3] = 0;
+	buff[0] = 0;
+	buff[1] = 0;
+	buff[2] = 0;
+	buff[3] = 0;
 }
 
 void	core(struct termios *origin, t_elem **e)
 {
-	(void)e;
-	char	buffer[4];
+	char	buff[4];
 
 	term_mod(&origin);
 	while (1)
 	{
-		clear_buffer(buffer);
-		read(0, buffer, 3);
-/*		ft_putnbr_fd(buffer[0], 1);
-		ft_putnbr_fd(buffer[1], 1);
-		ft_putnbr_fd(buffer[2], 1);
-		ft_putnbr_fd(buffer[3], 1);*/
-		if (buffer[2] == 68 )
+		clear_buff(buff);
+		read(0, buff, 3);
+		if (buff[2] == 68 )
+		{
 			ft_putendl_fd("fleche gauche", 1);
-		else if (buffer[2] == 67)
+		}
+		else if (buff[2] == 67)
+		{
 			ft_putendl_fd("fleche droite", 1);
-		else if (buffer[2] == 65)
+		}
+		else if (buff[2] == 65)
+		{
 			ft_putendl_fd("fleche haut", 1);
-		else if (buffer[2] == 66)
+		}
+		else if (buff[2] == 66)
+		{
 			ft_putendl_fd("fleche bas", 1);
-		else if (buffer[0] == 32)
+		}
+		else if (buff[0] == 32)
+		{
 			ft_putendl_fd("space", 1);
+		}
+		else if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
+			man_termcap(0, e, &origin);
+		else if (buff[0] == 127)
+		{
+			ft_putendl_fd("delete", 1);
+		}
+		else if (buff[0] == 10 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
+		{
+			ft_putendl_fd("enter", 1);
+		}
 	}
 }

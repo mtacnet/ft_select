@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   manage_termcap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/11 13:32:22 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/06 12:52:32 by mtacnet          ###   ########.fr       */
+/*   Created: 2017/11/06 12:38:33 by mtacnet           #+#    #+#             */
+/*   Updated: 2017/11/06 13:30:37 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "../includes/ft_select.h"
 
-# include "../libft/libft.h"
-# include "./list.h"
+static void		exit_term(t_elem **e, struct termios **origin)
+{
+	**origin = (*e)->term;
+	if (tcsetattr(0, TCSANOW, *origin) == -1)
+		exit(EXIT_FAILURE);
+	else
+		exit(EXIT_SUCCESS);
+}
 
-/*
-** MAIN_FUNCTIONS
-*/
-
-void				check_key();
-void				core(struct termios *origin, t_elem **e);
-void				term_mod(struct termios **origin);
-void				man_termcap(int val, t_elem **e, struct termios **origin);
-
-#endif
+void		man_termcap(int val, t_elem **e, struct termios **origin)
+{
+	if (val == 0)
+		exit_term(e, origin);
+}

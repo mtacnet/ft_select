@@ -1,0 +1,31 @@
+*********************************************************************************
+
+- Deplacement a l'aide des fleches dans la liste affichée
+
+- Sélection / déselection a l'aide de la touche "espace"
+	- Lors de la sélection, le curseur doit se positionner sur l'element suivant
+
+- Validation avec la touche "entrer" - Les choix doivent etre séparés par un espace
+
+- Gérer le redimensionnement de la fenetre utilisateur - Adapter l'affichage
+	- Le curseur de sélection doit etre reposionné de façon raisonnable
+	- Afficher un message si la fenetre est trop petite
+
+- Touche "echap" permet de quitter le programme (ATTENTION AUX LEAKS)
+	- La configuration du terminal doit etre restaurée
+
+- La touche "delete" permet de supprimer visuellement un élément de la liste
+	- Si plus d'éléments dans la liste alors quitter le programme proprement
+
+- Interrompre le programme avec ctrl-z et restaurer via "fg"
+
+- Ne pas oublier la gestion de l'environnement vide
+
+MODES:
+
+- Choix non sélectionné: texte normal
+- Choix sélectionné: texte vidéo inversé
+- Position curseur: texte souligné
+- Choix sélectionné + position curseur: texte vidéo inversé souligné
+
+*********************************************************************************
