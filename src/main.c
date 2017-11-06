@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 12:52:06 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/06 12:23:22 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/06 14:23:42 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ int				main(int argc, char **argv)
 		if (tcgetattr(0, &origin) == -1)
 			exit(EXIT_FAILURE);
 		save_arg(&e, argv);
-		view_list(&e);
-		e->term = origin;
+		view_llist(&e);
+		ft_putchar('\n');
+		e->term = origin; //Sauvegarde la struct termios originale
 		core(&origin, &e);
 	}
 	return (0);

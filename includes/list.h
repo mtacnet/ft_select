@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 14:35:26 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/31 14:55:38 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/06 14:14:37 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void				push_elem(t_elem **lst, char *content);
 void				supp_elem(t_elem **lst, char *arg);
 void				push_back(t_elem **lst, char *content);
 void				view_list(t_elem **lst);
+void				view_llist(t_elem **lst);
 void				cpy_lst(t_elem **lst_dest, t_elem **lst_src);
 void				freelst(t_elem **lst);
 int					is_empty(t_elem **lst);
