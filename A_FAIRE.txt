@@ -11,8 +11,8 @@
 	- Le curseur de sélection doit etre reposionné de façon raisonnable
 	- Afficher un message si la fenetre est trop petite
 
-- Touche "echap" permet de quitter le programme (ATTENTION AUX LEAKS)
-	- La configuration du terminal doit etre restaurée
+OK - Touche "echap" permet de quitter le programme (ATTENTION AUX LEAKS)
+	OK - La configuration du terminal doit etre restaurée
 
 - La touche "delete" permet de supprimer visuellement un élément de la liste
 	- Si plus d'éléments dans la liste alors quitter le programme proprement

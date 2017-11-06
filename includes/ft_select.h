@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 13:32:22 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/06 14:25:22 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/06 16:04:57 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void				core(struct termios *origin, t_elem **e);
 void				term_mod(struct termios **origin);
 void				man_termcap(int val, t_elem **e, struct termios **origin);
 void				display_list(t_elem **e);
+void				move_cursor(int val);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 16:28:04 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/06 14:37:19 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/06 16:15:58 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,13 @@ void	core(struct termios *origin, t_elem **e)
 		clear_buff(buff);
 		read(0, buff, 3);
 		if (buff[2] == 68 )
-		{
-			ft_putendl_fd("fleche gauche", 1);
-		}
+			move_cursor(1);
 		else if (buff[2] == 67)
-		{
-			ft_putendl_fd("fleche droite", 1);
-		}
+			move_cursor(2);
 		else if (buff[2] == 65)
-		{
-			ft_putendl_fd("fleche haut", 1);
-		}
+			move_cursor(3);
 		else if (buff[2] == 66)
-		{
-			ft_putendl_fd("fleche bas", 1);
-		}
+			move_cursor(4);
 		else if (buff[0] == 32)
 		{
 			ft_putendl_fd("space", 1);
