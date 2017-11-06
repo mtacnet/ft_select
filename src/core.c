@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 16:28:04 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/06 16:15:58 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/06 17:03:30 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void	core(struct termios *origin, t_elem **e)
 		{
 			ft_putendl_fd("enter", 1);
 		}
-		//display_list(e);
+	//	display_list(e);
 	}
 }
