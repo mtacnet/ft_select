@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 13:32:22 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/06 17:02:52 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/09 17:11:10 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "./list.h"
+# include <sys/ioctl.h>
 
 /*
 ** MAIN_FUNCTIONS

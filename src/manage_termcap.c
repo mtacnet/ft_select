@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 12:38:33 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/06 17:02:52 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/09 17:11:15 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void			move_cursor(int val)
 		res = tgetstr("up", NULL);
 	else if (val == 4)
 		res = tgetstr("do", NULL);
+	else if (val == 5)
+		res = tgetstr("us", NULL);
 	if (res == NULL)
 		exit(EXIT_FAILURE);
 	else

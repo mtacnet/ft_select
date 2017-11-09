@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 14:35:26 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/06 14:14:37 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/07 13:20:13 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void				freelst(t_elem **lst);
 int					is_empty(t_elem **lst);
 
 /*
- * ** FONCTIONS ARRAY
- * */
+** FONCTIONS ARRAY
+*/
 
 char				**list_to_tab(t_elem **lst);
 void				tab_to_list(t_elem **lst, char **array);
