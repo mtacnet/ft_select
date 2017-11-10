@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 12:52:06 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/10 12:46:18 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/10 17:30:13 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void		save_arg(t_elem **e, char **argv)
 	}
 }
 
+/* LIBERER LA MEMOIRE ALLOUE AVANT EXIT */
 static void		catch_signal(int sig)
 {
 	if (sig == SIGINT)
@@ -42,7 +43,7 @@ static void		catch_signal(int sig)
 	else if (sig == SIGTSTP)
 		exit(EXIT_SUCCESS); // --> A CORRIGER <--
 	else if (sig == SIGWINCH)
-		ft_putendl_fd("rezize", 1);
+		check_screen_size();
 
 }
 

@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 12:38:33 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/10 12:46:18 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/10 17:31:25 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,28 @@ static void		exit_term(t_elem **e, struct termios **origin)
 		exit(EXIT_SUCCESS);
 }
 
-void			display_list(t_elem **e)
+void			display_list(t_elem **e, int screen_sz, int arg_sz)
 {
-	char	*res;
-
-	if ((res = tgetstr("cl", NULL)) == NULL)
-		exit(EXIT_FAILURE);
-	ft_putstr(res);
-	view_llist(e);
+	int		i;
+	t_elem	*head;
+	(void)screen_sz;
+	head = (*e);
+	while ((*e) != NULL)
+	{
+		i = 0;
+		ft_putendl_fd((*e)->content, 1);
+		ft_putstr_fd(" ", 1);
+		if ((i = ft_strlenint((*e)->content)) < arg_sz)
+		{
+			while (i < arg_sz)
+			{
+				ft_putstr_fd(" ", 1);
+				i++;
+			}
+		}
+		(*e) = (*e)->next;
+	}
+	(*e) = head;
 }
 
 void			move_cursor(int val)
