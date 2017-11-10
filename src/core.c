@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 16:28:04 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/09 17:11:13 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/10 12:46:18 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,6 @@ static void		check_arg_size(t_elem **e)
 		(*e) = (*e)->next;
 	}
 	(*e) = head;
-	ft_putnbr(i);
-	ft_putchar('\n');
-	ft_putnbr(total_length);
-	ft_putchar('\n');
 }
 
 void			core(struct termios *origin, t_elem **e)
@@ -79,8 +75,6 @@ void			core(struct termios *origin, t_elem **e)
 	while (1)
 	{
 		ret = check_screen_size();
-		ft_putnbr(ret);
-		ft_putchar('\n');
 		check_arg_size(e);
 		clear_buff(buff);
 		read(0, buff, 3);

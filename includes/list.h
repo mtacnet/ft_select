@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 14:35:26 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/07 13:20:13 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/10 11:06:14 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <termios.h>
 # include <term.h>
 # include <curses.h>
+# include <signal.h>
+# include <sys/ioctl.h>
 
 typedef struct		s_elem
 {

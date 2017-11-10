@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 12:52:06 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/09 17:11:11 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/10 12:46:18 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,24 @@ static void		save_arg(t_elem **e, char **argv)
 	}
 }
 
+static void		catch_signal(int sig)
+{
+	if (sig == SIGINT)
+		exit(EXIT_SUCCESS);
+	else if (sig == SIGTSTP)
+		exit(EXIT_SUCCESS); // --> A CORRIGER <--
+	else if (sig == SIGWINCH)
+		ft_putendl_fd("rezize", 1);
+
+}
+
+static void		sig(void)
+{
+	signal(SIGINT, catch_signal); //Gestion du ctrl-C
+	signal(SIGTSTP, catch_signal); //Gestion du ctrl-Z
+	signal(SIGWINCH, catch_signal); //Gestion redimenssionnement fenetre
+}
+
 int				main(int argc, char **argv)
 {
 	t_elem			*e;
@@ -42,6 +60,7 @@ int				main(int argc, char **argv)
 	char			*name_term;
 
 	e = new_list();
+	sig();
 	name_term = NULL;
 	if (argc < 2)
 		exit(EXIT_SUCCESS);
