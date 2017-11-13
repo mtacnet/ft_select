@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 12:38:33 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/13 13:48:56 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/13 14:20:37 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,18 @@ void			display_list(t_elem **e, int screen_sz, int arg_sz)
 	int		i;
 	int		k;
 	int		j;
-	
+	int		l;
+
 	i = 0;
 	k = 0;
 	j = 0;
+	l = 0;
 	while ((*e) != NULL)
 	{
 		k = k + ft_strlenint((*e)->content) + 1 + j;
-		if (k >= screen_sz)
+		if ((*e)->next != NULL)
+			l = ft_strlenint((*e)->next->content);
+		if (k + l >= screen_sz)
 		{
 			ft_putstr_fd("\n", 1);
 			k = 0;
