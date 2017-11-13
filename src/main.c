@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 12:52:06 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/10 17:30:13 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/13 13:48:56 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void		catch_signal(int sig)
 		exit(EXIT_SUCCESS); // --> A CORRIGER <--
 	else if (sig == SIGWINCH)
 		check_screen_size();
-
 }
 
 static void		sig(void)

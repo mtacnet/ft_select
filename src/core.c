@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 16:28:04 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/10 17:30:17 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/13 13:48:56 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		clear_buff(char *buff)
 	buff[3] = 0;
 }
 
-int		check_screen_size(void)
+int				check_screen_size(void)
 {
 	struct winsize	w;
 
@@ -89,9 +89,9 @@ void			core(struct termios *origin, t_elem **e)
 		else if (buff[2] == 66)
 			move_cursor(4);
 		else if (buff[0] == 32)
-			move_cursor(5); //espace
-		else if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
-			man_termcap(0, e, &origin); //exit*/
+			move_cursor(5); //espace*/
+		if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
+			man_termcap(0, e, &origin); //exit
 		 if (buff[0] == 127)
 			ft_putendl_fd("delete", 1);
 		if (buff[0] == 10 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
