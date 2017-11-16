@@ -19,6 +19,7 @@ RESET		= "\033[0m"
 SRC			= main.c \
 			  core.c \
 			  manage_termcap.c \
+			  utils.c \
 
 OBJ			= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

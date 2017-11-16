@@ -32,52 +32,40 @@ static void		clear_buff(char *buff)
 	buff[3] = 0;
 }
 
-int				check_screen_size(void)
-{
-	struct winsize	w;
-
-	if (ioctl(1, TIOCGWINSZ, &w) != 0)
-	{
-		ft_putendl_fd("WIDTH_RECOVER_IMPOSSIBLE", 2);
-		exit(EXIT_FAILURE);
-	}
-	else
-		return (w.ws_col);
-}
-
-static int		check_arg_size(t_elem **e)
+static int		check_arg_size(t_elem **e, struct winsize w)
 {
 	int		i;
-	int		k;
 	t_elem	*head;
 
 	i = 0;
-	k = 0;
 	head = (*e);
 	while ((*e) != NULL)
 	{
 		if (ft_strlenint((*e)->content) > i)
 			i = ft_strlenint((*e)->content);
-		if ((*e)->next != NULL)
-			k++;
 		(*e) = (*e)->next;
 	}
 	(*e) = head;
-	return (i);
+	if (i > w.ws_col)
+		return (-1);
+	else
+		return (i);
 }
 
 void			core(struct termios *origin, t_elem **e)
 {
-	char	buff[4];
-	int		ret;
-	int		ret2;
+	char			buff[4];
+	struct winsize	w;
+	int				arg_sz;
 
 	term_mod(&origin);
 	while (1)
 	{
-		ret = check_screen_size();
-		ret2 = check_arg_size(e);
-		display_list(e, ret, ret2);
+		w = check_screen_size();
+		if ((arg_sz = check_arg_size(e, w)) == -1)
+			ft_putendl_fd("PLZ RESIZE SCREEN", 2);
+		else
+			display_list(e, w, arg_sz);
 		clear_buff(buff);
 		read(0, buff, 3);
 	/*	if (buff[2] == 68)
@@ -91,8 +79,8 @@ void			core(struct termios *origin, t_elem **e)
 		else if (buff[0] == 32)
 			move_cursor(5); //espace*/
 		if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
-			man_termcap(0, e, &origin); //exit
-		 if (buff[0] == 127)
+			man_termcap(0, e);
+		if (buff[0] == 127)
 			ft_putendl_fd("delete", 1);
 		if (buff[0] == 10 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
 			ft_putendl_fd("enter", 1);

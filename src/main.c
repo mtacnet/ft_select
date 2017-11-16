@@ -38,12 +38,15 @@ static void		save_arg(t_elem **e, char **argv)
 /* LIBERER LA MEMOIRE ALLOUE AVANT EXIT */
 static void		catch_signal(int sig)
 {
+	struct winsize	ws;
 	if (sig == SIGINT)
 		exit(EXIT_SUCCESS);
 	else if (sig == SIGTSTP)
 		exit(EXIT_SUCCESS); // --> A CORRIGER <--
 	else if (sig == SIGWINCH)
-		check_screen_size();
+	{
+		ws = check_screen_size();
+	}
 }
 
 static void		sig(void)
