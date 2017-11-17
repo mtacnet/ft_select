@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/17 11:38:08 by mtacnet           #+#    #+#             */
+/*   Updated: 2017/11/17 11:44:11 by mtacnet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_select.h"
 
 void				exit_term(void)
 {
 	struct termios t;
-	
+
 	if (tcgetattr(0, &t) == -1)
 		exit(EXIT_FAILURE);
 	t.c_lflag &= ~(ICANON);
@@ -36,22 +48,19 @@ void				display_list(t_elem **e, struct winsize w, int arg_sz)
 	int		i;
 	int		k;
 	int		nb_word;
-	
+
 	head = (*e);
 	nb_word = w.ws_col / arg_sz + 1;
 	i = 0;
 	while ((*e) != NULL)
 	{
 		ft_putstr_fd((*e)->content, 1);
-		k = ft_strlenint((*e)->content);
+		k = ft_strlenint((*e)->content) - 1;
 		i++;
 		if (i != nb_word - 1)
 		{
-			while (k < arg_sz)
-			{
+			while (k++ < arg_sz)
 				ft_putstr_fd(" ", 1);
-				k++;
-			}
 		}
 		else
 		{

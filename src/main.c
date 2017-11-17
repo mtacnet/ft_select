@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 12:52:06 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/13 13:48:56 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/17 11:38:50 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void		save_arg(t_elem **e, char **argv)
 static void		catch_signal(int sig)
 {
 	struct winsize	ws;
+
 	if (sig == SIGINT)
 		exit(EXIT_SUCCESS);
 	else if (sig == SIGTSTP)
