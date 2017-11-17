@@ -79,7 +79,7 @@ void			core(struct termios *origin, t_elem **e)
 		else if (buff[0] == 32)
 			move_cursor(5); //espace*/
 		if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
-			man_termcap(0, e);
+			exit_term(); // PENSER AUX LEAKS
 		if (buff[0] == 127)
 			ft_putendl_fd("delete", 1);
 		if (buff[0] == 10 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)

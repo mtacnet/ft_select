@@ -32,10 +32,3 @@ void			move_cursor(int val)
 	else
 		ft_putstr(res);
 }
-
-void			man_termcap(int val, t_elem **e)
-{
-	(void)e;
-	if (val == 0)
-		exit_term();
-}

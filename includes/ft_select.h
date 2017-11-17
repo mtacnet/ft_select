@@ -23,7 +23,6 @@
 void				check_key();
 void				core(struct termios *origin, t_elem **e);
 void				term_mod(struct termios **origin);
-void				man_termcap(int val, t_elem **e);
 void				display_list(t_elem **e, struct winsize w, int arg_sz);
 void				move_cursor(int val);
 void				exit_term(void);

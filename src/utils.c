@@ -50,7 +50,9 @@ void				display_list(t_elem **e, struct winsize w, int arg_sz)
 	int		nb_word;
 
 	head = (*e);
-	nb_word = w.ws_col / arg_sz + 1;
+	nb_word = 0;
+	if (arg_sz != 0)
+		nb_word = w.ws_col / arg_sz + 1;
 	i = 0;
 	while ((*e) != NULL)
 	{
