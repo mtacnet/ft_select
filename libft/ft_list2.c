@@ -1,47 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   view_list.c                                        :+:      :+:    :+:   */
+/*   ft_list2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtacnet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/01 14:14:44 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/22 13:29:35 by mtacnet          ###   ########.fr       */
+/*   Created: 2017/08/18 11:33:04 by mtacnet           #+#    #+#             */
+/*   Updated: 2017/11/22 12:06:50 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "../includes/list.h"
 
-void	view_llist(t_elem **lst)
+static void		add_element(t_elem **element, char *arg, int nb, int arg_sz)
 {
-	t_elem		*head;
-
-	head = (*lst);
-	while ((*lst) != NULL)
-	{
-		ft_putstr((*lst)->content);
-		if ((*lst)->next != NULL)
-			ft_putstr(" ");
-		(*lst) = (*lst)->next;
-	}
-	(*lst) = head;
+	(*element)->content = ft_strdup(arg);
+	(*element)->nb = nb;
+	(*element)->arg_sz = arg_sz;
 }
 
-void	view_list(t_elem **lst)
+void	push_elemx(t_elem **lst, char *content, int nb, int content_sz)
 {
+	t_elem		*element;
 	t_elem		*head;
+	t_elem		*prev;
 
+	element = NULL;
+	element = init_element(element);
+	add_element(&element, content, nb, content_sz);
 	head = (*lst);
+	prev = NULL;
+	if (is_empty(lst))
+	{
+		(*lst) = element;
+		return ;
+	}
 	while ((*lst) != NULL)
 	{
-		ft_putstr("arg_size: ");
-		ft_putnbr((*lst)->arg_sz);
-		ft_putstr("  nb: ");
-		ft_putnbr((*lst)->nb);
-		ft_putchar('\n');
-		ft_putendl((*lst)->content);
+		prev = (*lst);
 		(*lst) = (*lst)->next;
 	}
+	if (prev)
+		prev->next = element;
+	else
+		head = element;
+	element->next = (*lst);
 	(*lst) = head;
 }

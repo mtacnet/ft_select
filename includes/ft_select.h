@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 13:32:22 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/13 13:48:56 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/22 15:04:03 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@
 ** MAIN_FUNCTIONS
 */
 
-void				check_key();
-void				core(struct termios *origin, t_elem **e);
-void				term_mod(struct termios **origin);
-void				display_list(t_elem **e, struct winsize w, int arg_sz);
-void				move_cursor(int val);
+t_elem				*get_arg(char **argv);
+void				core(t_elem **e);
+void				sig(void);
+void				display_list(t_elem **e, struct winsize ws, int arg_sz);
+void				manage_termcap(char *buff, char *arg, int nb);
+void				manage(char *buff, t_elem **e);
 void				exit_term(void);
-struct winsize		check_screen_size(void);
-int					check_nb_arg(t_elem **e);
+void				move_cursor(int val);
+int					check_arg_size(t_elem **e, struct winsize ws);
+struct winsize		get_screen_sz(int val);
+struct termios		get_term(int val);
 
 #endif

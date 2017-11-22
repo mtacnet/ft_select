@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_termcap.c                                   :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 12:38:33 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/13 14:20:37 by mtacnet          ###   ########.fr       */
+/*   Created: 2017/11/20 12:25:18 by mtacnet           #+#    #+#             */
+/*   Updated: 2017/11/21 14:48:26 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
 
-void			move_cursor(int val)
-{
-	char	*res;
 
-	res = NULL;
-	if (val == 1)
-		res = tgetstr("le", NULL);
-	else if (val == 2)
-		res = tgetstr("nd", NULL);
-	else if (val == 3)
-		res = tgetstr("up", NULL);
-	else if (val == 4)
-		res = tgetstr("do", NULL);
-	else if (val == 5)
-		res = tgetstr("us", NULL);
-	if (res == NULL)
-		exit(EXIT_FAILURE);
-	else
-		ft_putstr(res);
+/* LIBERER LA MEMOIRE AVANT EXIT ! */
+
+static void		catch_signal(int sig)
+{
+	if (sig == SIGINT)
+		exit_term();
+	else if (sig == SIGTSTP)
+		exit(EXIT_SUCCESS);
+	else if (sig == SIGWINCH)
+		ft_putendl_fd("RESIZE", 1);
+}
+
+void			sig(void)
+{
+	signal(SIGINT, catch_signal); // Ctrl-C
+	signal(SIGTSTP, catch_signal); // Ctrl-Z
+	signal(SIGWINCH, catch_signal); // Resize Screen
 }

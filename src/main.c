@@ -5,80 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/30 12:52:06 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/17 11:38:50 by mtacnet          ###   ########.fr       */
+/*   Created: 2017/11/20 11:52:07 by mtacnet           #+#    #+#             */
+/*   Updated: 2017/11/21 16:11:46 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
 
-/* Stock la valeur de la variable d'environnement "TERM" dans name_term */
+/*
+** get_term: Récupere la valeur de la variable d'environnement "TERM" et
+** stock cette valeur dans le char* 'term'.
+*/
 
-static int		check_term(char **name_term)
+static int		init_term(char **term)
 {
-	if ((*name_term = getenv("TERM")) == NULL)
+	if ((*term = getenv("TERM")) == NULL)
 		return (-1);
 	return (0);
-}
-
-/* Stocke les arguments dans la liste "e" de type t_elem */
-
-static void		save_arg(t_elem **e, char **argv)
-{
-	int		i;
-
-	i = 1;
-	while (argv[i] != '\0')
-	{
-		push_elem(e, argv[i]);
-		i++;
-	}
-}
-
-/* LIBERER LA MEMOIRE ALLOUE AVANT EXIT */
-static void		catch_signal(int sig)
-{
-	struct winsize	ws;
-
-	if (sig == SIGINT)
-		exit(EXIT_SUCCESS);
-	else if (sig == SIGTSTP)
-		exit(EXIT_SUCCESS); // --> A CORRIGER <--
-	else if (sig == SIGWINCH)
-	{
-		ws = check_screen_size();
-	}
-}
-
-static void		sig(void)
-{
-	signal(SIGINT, catch_signal); //Gestion du ctrl-C
-	signal(SIGTSTP, catch_signal); //Gestion du ctrl-Z
-	signal(SIGWINCH, catch_signal); //Gestion redimenssionnement fenetre
 }
 
 int				main(int argc, char **argv)
 {
 	t_elem			*e;
-	struct termios	origin;
-	char			*name_term;
+	char			*term;
 
 	e = new_list();
+	term = NULL;
 	sig();
-	name_term = NULL;
 	if (argc < 2)
 		exit(EXIT_SUCCESS);
 	else
 	{
-		if (check_term(&name_term) != 0)
+		if (init_term(&term) != 0)
 			exit(EXIT_FAILURE);
-		if (tgetent(NULL, name_term) == ERR)
-			return (EXIT_FAILURE);
-		if (tcgetattr(0, &origin) == -1)
+		if (tgetent(NULL, term) == ERR)
 			exit(EXIT_FAILURE);
-		save_arg(&e, argv);
-		e->term = origin; //Sauvegarde la struct termios originale
-		core(&origin, &e);
+		get_term(1);
+		/*if (tcgetattr(0, &origin) == -1)
+			exit(EXIT_FAILURE);*/
+		e = get_arg(argv);
+		core(&e);
 	}
 	return (0);
 }

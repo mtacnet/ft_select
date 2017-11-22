@@ -5,83 +5,104 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 11:38:08 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/17 11:44:11 by mtacnet          ###   ########.fr       */
+/*   Created: 2017/11/20 11:51:57 by mtacnet           #+#    #+#             */
+/*   Updated: 2017/11/22 12:06:20 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
 
-void				exit_term(void)
+/*
+** get_screen_sz: Si val == 1 alors initialiser la struct et la retourner
+** si val == 0 alors retourner la struct deja remplie.
+*/
+
+struct winsize		get_screen_sz(int val)
 {
-	struct termios t;
+	static struct winsize	w;
 
-	if (tcgetattr(0, &t) == -1)
-		exit(EXIT_FAILURE);
-	t.c_lflag &= ~(ICANON);
-	t.c_lflag &= ~(ECHO);
-	t.c_cc[VMIN] = 1;
-	t.c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSADRAIN, &t) == -1)
-		exit(EXIT_FAILURE);
-	ft_putstr_fd(tgetstr("te", NULL), 0);
-	ft_putstr_fd(tgetstr("ve", NULL), 0);
-	exit(EXIT_SUCCESS);
-}
-
-void				display_list1(t_elem **e)
-{
-	t_elem		*head;
-
-	head = (*e);
-	while ((*e) != NULL)
+	if (val == 1)
 	{
-		ft_putendl_fd((*e)->content, 1);
-		(*e) = (*e)->next;
-	}
-	(*e) = head;
-}
-
-void				display_list(t_elem **e, struct winsize w, int arg_sz)
-{
-	t_elem	*head;
-	int		i;
-	int		k;
-	int		nb_word;
-
-	head = (*e);
-	nb_word = 0;
-	if (arg_sz != 0)
-		nb_word = w.ws_col / arg_sz + 1;
-	i = 0;
-	while ((*e) != NULL)
-	{
-		ft_putstr_fd((*e)->content, 1);
-		k = ft_strlenint((*e)->content) - 1;
-		i++;
-		if (i != nb_word - 1)
+		if (ioctl(1, TIOCGWINSZ, &w) != 0)
 		{
-			while (k++ < arg_sz)
-				ft_putstr_fd(" ", 1);
+			ft_putendl_fd("WIDTH_RECOVER_IMPOSSIBLE", 2);
+			exit(EXIT_FAILURE);
 		}
-		else
-		{
-			i = 0;
-			ft_putstr_fd("\n", 1);
-		}
-		(*e) = (*e)->next;
 	}
+	return (w);
 }
 
-struct winsize		check_screen_size(void)
-{
-	struct winsize	w;
+/*
+** get_arg: Si la struct e == NULL alors elle est remplie avec les argv puis
+** elle est retournée, sinon elle est retournée avec son contenu.
+*/
 
-	if (ioctl(1, TIOCGWINSZ, &w) != 0)
+t_elem				*get_arg(char **argv)
+{
+	static t_elem	*e = NULL;
+	int				i;
+
+	i = 1;
+	if (!e)
 	{
-		ft_putendl_fd("WIDTH_R	ECOVER_IMPOSSIBLE", 2);
+		if (argv != NULL)
+		{
+			while (argv[i] != '\0')
+			{
+				push_elemx(&e, argv[i], i, ft_strlenint(argv[i]));
+				i++;
+			}
+		}
+	}
+	return (e);
+}
+
+/*
+** init_term: Initialise le terminal avec les valeurs indiquées dans la fonction
+*/
+
+static void			init_term(struct termios *term)
+{
+	term->c_lflag &= ~(ICANON);
+	term->c_lflag &= ~(ECHO);
+	term->c_cc[VMIN] = 1;
+	term->c_cc[VTIME] = 0;
+	if (tcsetattr(0, TCSADRAIN, term) == -1)
 		exit(EXIT_FAILURE);
+}
+
+/*
+** get_term: Si val == 1 alors le terminal est récupéré - Sinon il est appliqué
+** avant la fonction init_term().
+*/
+
+struct termios		get_term(int val)
+{
+	static struct termios	term;
+
+	if (val == 1)
+	{
+		if (tcgetattr(0, &term) == -1)
+			exit(EXIT_FAILURE);
 	}
 	else
-		return (w);
+		init_term(&term);
+	return (term);
+}
+
+/*
+** exit_term: Quitte le programme en restaurant les parametres par defaut du
+** terminal et libere la mémoire alloué dynamiquement (liste t_elem).
+*/
+
+void				exit_term(void)
+{
+	t_elem		*term;
+
+	term = get_arg(NULL);
+	get_term(0);
+	ft_putstr_fd(tgetstr("te", NULL), 0);
+	ft_putstr_fd(tgetstr("ve", NULL), 0);
+	freelst(&term);
+	exit(EXIT_SUCCESS);
 }

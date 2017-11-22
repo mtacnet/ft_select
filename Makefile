@@ -6,7 +6,7 @@
 #    By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/11 14:50:14 by mtacnet           #+#    #+#              #
-#    Updated: 2017/11/06 12:39:15 by mtacnet          ###   ########.fr        #
+#    Updated: 2017/11/22 13:33:12 by mtacnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,11 @@ RESET		= "\033[0m"
 
 # src / obj files
 SRC			= main.c \
-			  core.c \
-			  manage_termcap.c \
 			  utils.c \
+			  core.c \
+			  signal.c \
+			  display.c \
+			  manage.c
 
 OBJ			= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

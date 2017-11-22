@@ -6,7 +6,7 @@
 /*   By: mtacnet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 11:12:48 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/10/31 14:58:20 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/21 16:09:59 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_elem		*init_element(t_elem *element)
 		ft_putendl("MEMORY ALLOCATION ERROR");
 		exit(EXIT_FAILURE);
 	}
+	element->arg_sz = 0;
+	element->hl = 0;
 	element->content = NULL;
 	element->next = NULL;
 	return (element);

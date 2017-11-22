@@ -5,34 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 16:28:04 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/16 15:28:12 by mtacnet          ###   ########.fr       */
+/*   Created: 2017/11/20 11:51:50 by mtacnet           #+#    #+#             */
+/*   Updated: 2017/11/22 15:04:08 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
 
-void			term_mod(struct termios **origin)
-{
-	(*origin)->c_lflag &= ~(ICANON);
-	(*origin)->c_lflag &= ~(ECHO);
-	(*origin)->c_cc[VMIN] = 1;
-	(*origin)->c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSADRAIN, *origin) == -1)
-		exit(EXIT_FAILURE);
-	ft_putstr_fd(tgetstr("ti", NULL), 0);
-	ft_putstr_fd(tgetstr("vi", NULL), 0);
-}
-
-static void		clear_buff(char *buff)
-{
-	buff[0] = 0;
-	buff[1] = 0;
-	buff[2] = 0;
-	buff[3] = 0;
-}
-
-static int		check_arg_size(t_elem **e, struct winsize w)
+int				check_arg_size(t_elem **e, struct winsize ws)
 {
 	int		i;
 	t_elem	*head;
@@ -46,43 +26,39 @@ static int		check_arg_size(t_elem **e, struct winsize w)
 		(*e) = (*e)->next;
 	}
 	(*e) = head;
-	if (i > w.ws_col)
+	if (i > ws.ws_col)
 		return (-1);
 	else
 		return (i);
 }
 
-void			core(struct termios *origin, t_elem **e)
+static void		clear_buff(char *buff)
+{
+	buff[0] = 0;
+	buff[1] = 0;
+	buff[2] = 0;
+	buff[3] = 0;
+}
+
+void			core(t_elem **e)
 {
 	char			buff[4];
-	struct winsize	w;
+	struct winsize	ws;
 	int				arg_sz;
 
-	term_mod(&origin);
+	ws = get_screen_sz(1);
+	if ((arg_sz = check_arg_size(e, ws)) == -1)
+		ft_putendl_fd("PLEASE RESIZE SCREEN", 2);
+	get_term(0);
+	ft_putstr_fd(tgetstr("ti", NULL), 0);
+	ft_putstr_fd(tgetstr("vi", NULL), 0);
+	(*e)->ul = 1;
 	while (1)
 	{
-		w = check_screen_size();
-		if ((arg_sz = check_arg_size(e, w)) == -1)
-			ft_putendl_fd("PLZ RESIZE SCREEN", 2);
-		else
-			display_list(e, w, arg_sz);
+		manage(buff, e);
+		display_list(e, get_screen_sz(0), arg_sz);
 		clear_buff(buff);
 		read(0, buff, 3);
-	/*	if (buff[2] == 68)
-			move_cursor(1);
-		else if (buff[2] == 67)
-			move_cursor(2);
-		else if (buff[2] == 65)
-			move_cursor(3);
-		else if (buff[2] == 66)
-			move_cursor(4);
-		else if (buff[0] == 32)
-			move_cursor(5); //espace*/
-		if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
-			exit_term(); // PENSER AUX LEAKS
-		if (buff[0] == 127)
-			ft_putendl_fd("delete", 1);
-		if (buff[0] == 10 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
-			ft_putendl_fd("enter", 1);
+		ft_putstr_fd(tgetstr("cl", NULL), 0);
 	}
 }

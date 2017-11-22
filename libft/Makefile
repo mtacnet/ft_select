@@ -20,7 +20,7 @@ SRCS	= ft_atoi.c ft_bzero.c ft_countword.c ft_intlen.c ft_isalnum.c \
 	ft_strsplit.c ft_strstr.c ft_strsub.c ft_tolower.c ft_toupper.c \
 	ft_swap.c get_next_line.c ft_strlenint.c ft_list.c ft_init_list.c \
 	ft_view_list.c ft_cpy_lst.c ft_tab.c ft_strjoinfree.c view_tab.c \
-	ft_isspace.c
+	ft_isspace.c ft_list2.c
 
 OBJS	= $(SRCS:.c=.o)
 

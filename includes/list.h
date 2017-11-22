@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 14:35:26 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/10 11:06:14 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/22 12:08:36 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@
 
 typedef struct		s_elem
 {
+	int				nb;
+	int				arg_sz;
+	int				hl;
+	int				ul;
 	char			*content;
 	struct s_elem	*next;
-	struct termios	term;
 }					t_elem;
 
 /*
@@ -32,6 +35,7 @@ typedef struct		s_elem
 
 t_elem				*new_list(void);
 t_elem				*init_element(t_elem *element);
+void				push_elemx(t_elem **lst, char *content, int nb, int arg_sz);
 void				push_elem(t_elem **lst, char *content);
 void				supp_elem(t_elem **lst, char *arg);
 void				push_back(t_elem **lst, char *content);
