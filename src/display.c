@@ -14,10 +14,6 @@
 
 /*void	manage_termcap(char *buff, char *arg, int nb)
 {
-//	if (buff[0] == 32) //espace
-//		ft_putstr_fd("space", 1);
-	if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
-		exit_term(); //exit_term
 //	if (buff[0] == 10 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
 //		ft_putstr_fd("enter", 1);
 //	if (buff[0] == 127)

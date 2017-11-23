@@ -26,7 +26,6 @@ void				sig(void);
 void				display_list(t_elem **e, struct winsize ws, int arg_sz);
 void				manage_termcap(char *buff, char *arg, int nb);
 void				exit_term(void);
-void				move_cursor(int val);
 int					check_arg_size(t_elem **e, struct winsize ws);
 int					manage(char *buff, t_elem **e, int pos);
 struct winsize		get_screen_sz(int val);

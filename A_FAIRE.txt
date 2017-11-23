@@ -2,8 +2,8 @@
 
 - Deplacement a l'aide des fleches dans la liste affichée
 
-- Sélection / déselection a l'aide de la touche "espace"
-	- Lors de la sélection, le curseur doit se positionner sur l'element suivant
+OK - Sélection / déselection a l'aide de la touche "espace"
+	OK - Lors de la sélection, le curseur doit se positionner sur l'element suivant
 
 - Validation avec la touche "entrer" - Les choix doivent etre séparés par un espace
 
