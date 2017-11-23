@@ -45,7 +45,9 @@ void			core(t_elem **e)
 	char			buff[4];
 	struct winsize	ws;
 	int				arg_sz;
+	int				pos;
 
+	pos = 1;
 	ws = get_screen_sz(1);
 	if ((arg_sz = check_arg_size(e, ws)) == -1)
 		ft_putendl_fd("PLEASE RESIZE SCREEN", 2);
@@ -55,10 +57,10 @@ void			core(t_elem **e)
 	(*e)->ul = 1;
 	while (1)
 	{
-		manage(buff, e);
 		display_list(e, get_screen_sz(0), arg_sz);
 		clear_buff(buff);
 		read(0, buff, 3);
 		ft_putstr_fd(tgetstr("cl", NULL), 0);
+		pos = manage(buff, e, pos);
 	}
 }

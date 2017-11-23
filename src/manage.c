@@ -12,28 +12,24 @@
 
 #include "../includes/ft_select.h"
 
-void	manage(char *buff, t_elem **e)
+int		manage(char *buff, t_elem **e, int pos)
 {
 	t_elem		*tmp;
-	int			i;
-
 	tmp = (*e);
-	i = 1;
-	while (tmp != NULL)
+	while (tmp != NULL && tmp->nb < pos)
+		tmp = tmp->next;
+	if (tmp != NULL)
 	{
 		if (buff[0] == 32)
 		{
 			tmp->ul = 0;
-			if (tmp->hl == 0)
-			{
-				tmp->hl = 1;
+			tmp->hl = 1;
+			if (tmp->next != NULL)
 				tmp->next->ul = 1;
-			}
-			else
-				tmp->hl = 0;
 		}
-		i++;
-		return ;
-		tmp = tmp->next;
 	}
+	if (tmp->next != NULL)
+		return (tmp->next->nb);
+	else
+		return (tmp->nb);
 }
