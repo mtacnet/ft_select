@@ -14,6 +14,8 @@
 
 static void		manage_key(char *buff, t_elem *tmp)
 {
+	if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
+		exit_term();
 	if (buff[0] == 32)
 	{
 		tmp->ul = 0;
@@ -21,6 +23,7 @@ static void		manage_key(char *buff, t_elem *tmp)
 		if (tmp->next != NULL)
 			tmp->next->ul = 1;
 	}
+
 }
 
 int		manage(char *buff, t_elem **e, int pos)
@@ -28,6 +31,7 @@ int		manage(char *buff, t_elem **e, int pos)
 	t_elem		*tmp;
 
 	tmp = (*e);
+	manage_key(buff, tmp);
 	while (tmp != NULL && tmp->nb < pos)
 		tmp = tmp->next;
 	if (tmp != NULL)
