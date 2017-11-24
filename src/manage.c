@@ -16,11 +16,9 @@ static void			move_cursor(int val, t_elem *tmp, t_elem *prev)
 {
 	if (val == 1)
 	{
+		tmp->ul = 0;
 		if (tmp->next != NULL)
-		{
-			tmp->ul = 0;
 			tmp->next->ul = 1;
-		}
 	}
 	else if (val == 2)
 	{
@@ -69,10 +67,10 @@ static int			return_pos(t_elem **e)
 
 	i = 1;
 	tmp = (*e);
-	while (tmp->ul != 1)
+	while (tmp->next != NULL && tmp->ul != 1)
 	{
-		i++;
-		tmp = tmp->next;
+			i++;
+			tmp = tmp->next;
 	}
 	return (i);
 }
@@ -86,8 +84,11 @@ int					manage(char *buff, t_elem **e, int pos)
 	i = 0;
 	prev = NULL;
 	tmp = (*e);
-	while (tmp != NULL && tmp->nb < pos)
-		tmp = tmp->next;
+	while (tmp && tmp->nb < pos)
+	{
+		if (tmp->next != NULL)
+			tmp = tmp->next;
+	}
 	if (tmp != NULL)
 	{
 		prev = check_prev(tmp, e);
