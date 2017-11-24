@@ -25,6 +25,7 @@ typedef struct		s_elem
 	int				arg_sz;
 	int				hl;
 	int				ul;
+	int				del;
 	char			*content;
 	struct s_elem	*next;
 }					t_elem;

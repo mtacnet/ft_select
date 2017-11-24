@@ -34,6 +34,9 @@ void	display_list(t_elem **e, struct winsize ws, int arg_sz)
 	i = 0;
 	while (tmp != NULL)
 	{
+		if (tmp->del == 1)
+			if (tmp->next != NULL)
+				tmp = tmp->next;
 		if (tmp->ul == 1)
 			ft_putstr_fd(tgetstr("us", NULL), 1);
 		if (tmp->hl == 1)

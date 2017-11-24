@@ -35,6 +35,8 @@ t_elem		*init_element(t_elem *element)
 	}
 	element->arg_sz = 0;
 	element->hl = 0;
+	element->ul = 0;
+	element->del = 0;
 	element->content = NULL;
 	element->next = NULL;
 	return (element);

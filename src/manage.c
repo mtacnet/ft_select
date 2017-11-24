@@ -17,13 +17,16 @@ static void			move_cursor(int val, t_elem *tmp, t_elem *prev)
 	if (val == 1)
 	{
 		tmp->ul = 0;
-		if (tmp->next != NULL)
+		if (tmp->del != 1)
 			tmp->next->ul = 1;
 	}
 	else if (val == 2)
 	{
-		tmp->ul = 0;
-		prev->ul = 1;
+		if (tmp->del != 1)
+		{
+			tmp->ul = 0;
+			prev->ul = 1;
+		}
 	}
 }
 
@@ -31,6 +34,13 @@ static void			manage_key(char *buff, t_elem *tmp, t_elem *prev)
 {
 	if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
 		exit_term();
+	else if (buff[0] == 127)
+	{
+		tmp->ul = 0;
+		tmp->del = 1;
+		if (tmp->next != NULL)
+			tmp->next->ul = 1;
+	}
 	else if (buff[0] == 32)
 	{
 		tmp->ul = 0;
@@ -38,11 +48,14 @@ static void			manage_key(char *buff, t_elem *tmp, t_elem *prev)
 			tmp->hl = 1;
 		else
 			tmp->hl = 0;
-		if (tmp->next != NULL)
+		if (tmp->next != NULL && tmp->next->del != 1)
 			tmp->next->ul = 1;
 	}
 	else if (buff[2] == 67)
-		move_cursor(1, tmp, prev);
+	{
+		if (tmp->next != NULL)
+			move_cursor(1, tmp, prev);
+	}
 	else if (buff[2] == 68)
 		move_cursor(2, tmp, prev);
 }
