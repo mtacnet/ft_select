@@ -12,14 +12,6 @@
 
 #include "../includes/ft_select.h"
 
-/*void	manage_termcap(char *buff, char *arg, int nb)
-{
-//	if (buff[0] == 10 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
-//		ft_putstr_fd("enter", 1);
-//	if (buff[0] == 127)
-//		ft_putstr_fd("delete", 1);
-}*/
-
 void	display_list(t_elem **e, struct winsize ws, int arg_sz)
 {
 	t_elem		*tmp;
@@ -34,26 +26,26 @@ void	display_list(t_elem **e, struct winsize ws, int arg_sz)
 	i = 0;
 	while (tmp != NULL)
 	{
-		if (tmp->del == 1)
-			if (tmp->next != NULL)
-				tmp = tmp->next;
-		if (tmp->ul == 1)
-			ft_putstr_fd(tgetstr("us", NULL), 1);
-		if (tmp->hl == 1)
-			ft_putstr_fd(tgetstr("mr", NULL), 1);
-		ft_putstr_fd(tmp->content, 1);
-		ft_putstr_fd(tgetstr("me", NULL), 1);
-		k = ft_strlenint(tmp->content) - 1;
-		i++;
-		if (i != nb_words - 1)
+		if (tmp->del == 0)
 		{
-			while (k++ < arg_sz)
-				ft_putstr_fd(" ", 1);
-		}
-		else
-		{
-			i = 0;
-			ft_putstr_fd("\n", 1);
+			if (tmp->ul == 1)
+				ft_putstr_fd(tgetstr("us", NULL), 1);
+			if (tmp->hl == 1)
+				ft_putstr_fd(tgetstr("mr", NULL), 1);
+			ft_putstr_fd(tmp->content, 1);
+			ft_putstr_fd(tgetstr("me", NULL), 1);
+			k = ft_strlenint(tmp->content) - 1;
+			i++;
+			if (i != nb_words - 1)
+			{
+				while (k++ < arg_sz)
+					ft_putstr_fd(" ", 1);
+			}
+			else
+			{
+				i = 0;
+				ft_putstr_fd("\n", 1);
+			}
 		}
 		tmp = tmp->next;
 	}

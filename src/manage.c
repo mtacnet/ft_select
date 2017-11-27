@@ -1,79 +1,46 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   manage.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 13:32:42 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/22 15:04:02 by mtacnet          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/ft_select.h"
 
-static void			move_cursor(int val, t_elem *tmp, t_elem *prev)
+t_elem	*check_next(t_elem *tmp)
 {
-	if (val == 1)
+	t_elem		*next;
+
+	next = NULL;
+	if (tmp)
 	{
-		tmp->ul = 0;
-		if (tmp->del != 1)
-			tmp->next->ul = 1;
+		next = tmp;
+		while (next->next != NULL && next->del == 1)
+			next = next->next;
 	}
-	else if (val == 2)
-	{
-		if (tmp->del != 1)
-		{
-			tmp->ul = 0;
-			prev->ul = 1;
-		}
-	}
+	return (next);
 }
 
-static void			manage_key(char *buff, t_elem *tmp, t_elem *prev)
+static void		manage_key(char *buff, t_elem *tmp, t_elem *prev, t_elem **e)
 {
 	if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
 		exit_term();
-	else if (buff[0] == 127)
-	{
-		tmp->ul = 0;
-		tmp->del = 1;
-		if (tmp->next != NULL)
-			tmp->next->ul = 1;
-	}
-	else if (buff[0] == 32)
-	{
-		tmp->ul = 0;
-		if (tmp->hl == 0)
-			tmp->hl = 1;
-		else
-			tmp->hl = 0;
-		if (tmp->next != NULL && tmp->next->del != 1)
-			tmp->next->ul = 1;
-	}
 	else if (buff[2] == 67)
-	{
-		if (tmp->next != NULL)
-			move_cursor(1, tmp, prev);
-	}
+		move_cursor(1, tmp, prev, e);
 	else if (buff[2] == 68)
-		move_cursor(2, tmp, prev);
+		move_cursor(2, tmp, prev, e);
 }
 
-static t_elem		*check_prev(t_elem *tmp, t_elem **e)
+static t_elem	*check_prev(t_elem *tmp, t_elem **e)
 {
 	t_elem		*prev;
 
 	prev = (*e);
 	if (tmp)
 	{
-		while (prev->nb < (tmp->nb - 1))
-			prev = prev->next;
+		if ((tmp->nb - 1) < 1)
+			prev = last_elem(e);
+		else
+			while (prev->nb < (tmp->nb - 1) && prev->del == 0)
+				prev = prev->next;
 	}
 	return (prev);
 }
 
-static int			return_pos(t_elem **e)
+static int		return_pos(t_elem **e)
 {
 	int			i;
 	t_elem		*tmp;
@@ -82,13 +49,13 @@ static int			return_pos(t_elem **e)
 	tmp = (*e);
 	while (tmp->next != NULL && tmp->ul != 1)
 	{
-			i++;
-			tmp = tmp->next;
+		i++;
+		tmp = tmp->next;
 	}
 	return (i);
 }
 
-int					manage(char *buff, t_elem **e, int pos)
+int		manage(char *buff, t_elem **e, int pos)
 {
 	t_elem		*tmp;
 	t_elem		*prev;
@@ -105,7 +72,7 @@ int					manage(char *buff, t_elem **e, int pos)
 	if (tmp != NULL)
 	{
 		prev = check_prev(tmp, e);
-		manage_key(buff, tmp, prev);
+		manage_key(buff, tmp, prev, e);
 	}
 	i = return_pos(e);
 	return (i);

@@ -21,7 +21,8 @@ SRC			= main.c \
 			  core.c \
 			  signal.c \
 			  display.c \
-			  manage.c
+			  manage.c \
+			  cursor.c
 
 OBJ			= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
