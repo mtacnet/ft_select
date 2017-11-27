@@ -32,6 +32,7 @@ int					manage(char *buff, t_elem **e, int pos);
 struct winsize		get_screen_sz(int val);
 struct termios		get_term(int val);
 t_elem				*check_next(t_elem *tmp);
+t_elem				*check_prev(t_elem *tmp, t_elem **e);
 t_elem				*last_elem(t_elem **e);
 
 #endif

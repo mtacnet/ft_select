@@ -18,6 +18,7 @@ RESET		= "\033[0m"
 # src / obj files
 SRC			= main.c \
 			  utils.c \
+			  utils2.c \
 			  core.c \
 			  signal.c \
 			  display.c \
