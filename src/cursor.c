@@ -24,8 +24,8 @@ void			move_cursor(int val, t_elem *tmp, t_elem *prev, t_elem **e)
 	head = (*e);
 	if (val == 1)
 	{
-		tmp->ul = 0;
 		empty_list(e);
+		tmp->ul = 0;
 		if (!(tmp = check_next(tmp->next)))
 			tmp = check_next(head);
 		tmp->ul = 1;

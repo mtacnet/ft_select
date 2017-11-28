@@ -17,12 +17,21 @@
 
 static void		catch_signal(int sig)
 {
+	t_elem		*e;
+	struct winsize		ws;
+
+	e = NULL;
 	if (sig == SIGINT)
 		exit_term();
 	else if (sig == SIGTSTP)
 		exit(EXIT_SUCCESS);
 	else if (sig == SIGWINCH)
-		ft_putendl_fd("RESIZE", 1);
+	{
+		e = get_arg(NULL);
+		ws = get_screen_sz(1);
+		ft_putstr_fd(tgetstr("cl", NULL), 0);
+		display_list(&e, ws, check_arg_size(&e, ws));
+	}
 }
 
 void			sig(void)
