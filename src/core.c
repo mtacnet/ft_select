@@ -40,6 +40,23 @@ static void		clear_buff(char *buff)
 	buff[3] = 0;
 }
 
+void		empty_list(t_elem **e)
+{
+	t_elem		*tmp;
+	int			i;
+
+	i = 0;
+	tmp = (*e);
+	while (tmp != NULL)
+	{
+		if (tmp->del == 0)
+			i++;
+		tmp = tmp->next;
+	}
+	if (i == 0)
+		exit_term();
+}
+
 void			core(t_elem **e)
 {
 	char			buff[4];

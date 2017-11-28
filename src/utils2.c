@@ -10,10 +10,13 @@ t_elem		*check_prev(t_elem *tmp, t_elem **e)
 		if ((tmp->nb - 1) < 1)
 			prev = last_elem(e);
 		else
-			while (prev->nb < (tmp->nb - 1) && prev->del == 0)
-				prev = prev->next;
+			while (prev->nb < (tmp->nb - 1)) //&& prev->del == 0)
+					prev = prev->next;
 	}
-	return (prev);
+	if (prev->del == 0)
+		return (prev);
+	else
+		return (check_prev(prev, e));
 }
 
 t_elem		*check_next(t_elem *tmp)
@@ -27,7 +30,10 @@ t_elem		*check_next(t_elem *tmp)
 		while (next->next != NULL && next->del == 1)
 			next = next->next;
 	}
-	return (next);
+	if (next && next->del == 0)
+		return (next);
+	else
+		return (NULL);
 }
 
 t_elem		*last_elem(t_elem **e)

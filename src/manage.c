@@ -6,6 +6,8 @@ static void		manage_key(char *buff, t_elem *tmp, t_elem *prev, t_elem **e)
 		exit_term();
 	else if (buff[0] == 32)
 		move_cursor(3, tmp, prev, e);
+	else if (buff[0] == 127)
+		move_cursor(4, tmp, prev, e);
 	else if (buff[2] == 67)
 		move_cursor(1, tmp, prev, e);
 	else if (buff[2] == 68)

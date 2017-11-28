@@ -1,5 +1,12 @@
 #include "../includes/ft_select.h"
 
+static void		remove_elem(t_elem *tmp, t_elem **e, t_elem *prev)
+{
+	tmp->ul = 0;
+	tmp->del = 1;
+	move_cursor(1, tmp, prev, e);
+}
+
 static void		select_elem(t_elem *tmp, t_elem **e, t_elem *prev)
 {
 	tmp->ul = 0;
@@ -18,10 +25,9 @@ void			move_cursor(int val, t_elem *tmp, t_elem *prev, t_elem **e)
 	if (val == 1)
 	{
 		tmp->ul = 0;
-		if (tmp->next != NULL)
-			tmp = check_next(tmp->next);
-		else
-			tmp = head;
+		empty_list(e);
+		if (!(tmp = check_next(tmp->next)))
+			tmp = check_next(head);
 		tmp->ul = 1;
 	}
 	else if (val == 2)
@@ -31,4 +37,6 @@ void			move_cursor(int val, t_elem *tmp, t_elem *prev, t_elem **e)
 	}
 	else if (val == 3)
 		select_elem(tmp, e, prev);
+	else if (val == 4)
+		remove_elem(tmp, e, prev);
 }
