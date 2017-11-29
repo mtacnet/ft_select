@@ -45,3 +45,12 @@ t_elem		*last_elem(t_elem **e)
 	return (tmp);
 }
 
+void		reset_term(void)
+{
+	t_elem		*term;
+
+	term = get_arg(NULL);
+	get_term(0);
+	ft_putstr_fd(tgetstr("te", NULL), 0);
+	ft_putstr_fd(tgetstr("ve", NULL), 0);
+}

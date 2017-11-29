@@ -61,7 +61,7 @@ t_elem				*get_arg(char **argv)
 ** init_term: Initialise le terminal avec les valeurs indiquées dans la fonction
 */
 
-static void			init_term(struct termios *term)
+void			init_term(struct termios *term)
 {
 	term->c_lflag &= ~(ICANON);
 	term->c_lflag &= ~(ECHO);

@@ -17,7 +17,7 @@
 ** stock cette valeur dans le char* 'term'.
 */
 
-static int		init_term(char **term)
+static int		catch_term(char **term)
 {
 	if ((*term = getenv("TERM")) == NULL)
 		return (-1);
@@ -36,7 +36,7 @@ int				main(int argc, char **argv)
 		exit(EXIT_SUCCESS);
 	else
 	{
-		if (init_term(&term) != 0)
+		if (catch_term(&term) != 0)
 			exit(EXIT_FAILURE);
 		if (tgetent(NULL, term) == ERR)
 			exit(EXIT_FAILURE);
