@@ -30,6 +30,7 @@ void				move_cursor(int val, t_elem *tmp, t_elem *prev, t_elem **e);
 void				empty_list(t_elem **e);
 int					check_arg_size(t_elem **e, struct winsize ws);
 int					manage(char *buff, t_elem **e, int pos);
+int					check_display(t_elem **e, struct winsize ws, int nb_words);
 struct winsize		get_screen_sz(int val);
 struct termios		get_term(int val);
 t_elem				*check_next(t_elem *tmp);
