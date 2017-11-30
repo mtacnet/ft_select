@@ -17,6 +17,30 @@ static void		select_elem(t_elem *tmp, t_elem **e, t_elem *prev)
 	move_cursor(1, tmp, prev, e);
 }
 
+void		display_elem(t_elem **e)
+{
+	t_elem		*tmp;
+	int			i;
+
+	tmp = (*e);
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
+	reset_term();
+	i = 0;
+	while (tmp != NULL)
+	{
+		if (tmp->hl == 1)
+		{
+			if (i != 0)
+				ft_putstr_fd(" ", 1);
+			ft_putstr_fd(tmp->content, 1);
+		}
+		i++;
+		tmp = tmp->next;
+	}
+	freelst(e);
+	exit(EXIT_SUCCESS);
+}
+
 void			move_cursor(int val, t_elem *tmp, t_elem *prev, t_elem **e)
 {
 	t_elem		*head;

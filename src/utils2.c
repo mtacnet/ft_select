@@ -10,7 +10,7 @@ t_elem		*check_prev(t_elem *tmp, t_elem **e)
 		if ((tmp->nb - 1) < 1)
 			prev = last_elem(e);
 		else
-			while (prev->nb < (tmp->nb - 1)) //&& prev->del == 0)
+			while (prev->nb < (tmp->nb - 1))
 					prev = prev->next;
 	}
 	if (prev->del == 0)

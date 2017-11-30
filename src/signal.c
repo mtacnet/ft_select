@@ -12,9 +12,6 @@
 
 #include "../includes/ft_select.h"
 
-
-/* LIBERER LA MEMOIRE AVANT EXIT ! */
-
 static void		catch_exit_sig(int sig)
 {
 	if (sig)
@@ -48,7 +45,7 @@ static void		catch_tmp_signal(int sig)
 		cmd[0] = t.c_cc[VSUSP];
 		cmd[1] = '\0';
 		reset_term();
-		ft_putstr_fd(tgetstr("ve", NULL), 1);
+		ft_putstr_fd(tgetstr("ve", NULL), 0);
 		signal(SIGTSTP, SIG_DFL);
 		ioctl(0, TIOCSTI, cmd);
 		if (tcsetattr(0, TCSADRAIN, &t) == -1)
@@ -68,8 +65,8 @@ static void		catch_fg(int sig)
 		e = get_arg(NULL);
 		ws = get_screen_sz(1);
 		init_term(&ex);
-		ft_putstr_fd(tgetstr("vi", NULL), 1);
-		ft_putstr_fd(tgetstr("cl", NULL), 1);
+		ft_putstr_fd(tgetstr("vi", NULL), 0);
+		ft_putstr_fd(tgetstr("cl", NULL), 0);
 		display_list(&e, ws, check_arg_size(&e, ws));
 	}
 }

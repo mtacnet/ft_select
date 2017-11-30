@@ -37,12 +37,13 @@ int				main(int argc, char **argv)
 	else
 	{
 		if (catch_term(&term) != 0)
+		{
+			ft_putendl_fd("VARIABLE TERM IS NOT SET IN THE ENVIRONNEMENT", 2);
 			exit(EXIT_FAILURE);
+		}
 		if (tgetent(NULL, term) == ERR)
 			exit(EXIT_FAILURE);
 		get_term(1);
-		/*if (tcgetattr(0, &origin) == -1)
-			exit(EXIT_FAILURE);*/
 		e = get_arg(argv);
 		core(&e);
 	}

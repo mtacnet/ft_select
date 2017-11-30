@@ -53,22 +53,22 @@ void	display_list(t_elem **e, struct winsize ws, int arg_sz)
 			if (tmp->del == 0)
 			{
 				if (tmp->ul == 1)
-					ft_putstr_fd(tgetstr("us", NULL), 1);
+					ft_putstr_fd(tgetstr("us", NULL), 0);
 				if (tmp->hl == 1)
-					ft_putstr_fd(tgetstr("mr", NULL), 1);
-				ft_putstr_fd(tmp->content, 1);
-				ft_putstr_fd(tgetstr("me", NULL), 1);
+					ft_putstr_fd(tgetstr("mr", NULL), 0);
+				ft_putstr_fd(tmp->content, 0);
+				ft_putstr_fd(tgetstr("me", NULL), 0);
 				k = ft_strlenint(tmp->content) - 1;
 				i++;
 				if (i != nb_words - 1)
 				{
 					while (k++ < arg_sz)
-						ft_putstr_fd(" ", 1);
+						ft_putstr_fd(" ", 0);
 				}
 				else
 				{
 					i = 0;
-					ft_putstr_fd("\n", 1);
+					ft_putstr_fd("\n", 0);
 				}
 			}
 			tmp = tmp->next;
