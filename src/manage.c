@@ -3,7 +3,7 @@
 static void		manage_key(char *buff, t_elem *tmp, t_elem *prev, t_elem **e)
 {
 	if (buff[0] == 27 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
-		exit_term();
+		exit_term(1);
 	else if (buff[0] == 32)
 		move_cursor(3, tmp, prev, e);
 	else if (buff[0] == 127)

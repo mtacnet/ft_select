@@ -33,11 +33,11 @@ void		display_elem(t_elem **e)
 			if (i != 0)
 				ft_putstr_fd(" ", 1);
 			ft_putstr_fd(tmp->content, 1);
+				i++;
 		}
-		i++;
 		tmp = tmp->next;
 	}
-	freelst(e);
+	ft_putchar('\n');
 	exit(EXIT_SUCCESS);
 }
 

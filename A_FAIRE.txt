@@ -1,0 +1,10 @@
+- Retour a la ligne lors de la sélection
+
+- Faire un retour différent de 0 lors du Ctrl-C ou quit lors d’une erreur
+
+- Recalculer la taille de l’arg_sz lors de la suppression d’un élément
+
+- Prb de gestion avec les `
+
+- Rétablir mode ECHO lors d’un quit ou échap (via Bash)
+

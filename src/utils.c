@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:51:57 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/22 12:06:20 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/30 16:47:44 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ struct winsize		get_screen_sz(int val)
 
 	if (val == 1)
 	{
-		if (ioctl(1, TIOCGWINSZ, &w) != 0)
+		if (ioctl(0, TIOCGWINSZ, &w) == -1)
 		{
 			ft_putendl_fd("WIDTH_RECOVER_IMPOSSIBLE", 2);
 			exit(EXIT_FAILURE);
@@ -95,7 +95,7 @@ struct termios		get_term(int val)
 ** terminal et libere la mémoire alloué dynamiquement (liste t_elem).
 */
 
-void				exit_term(void)
+void				exit_term(int val)
 {
 	t_elem		*term;
 
@@ -104,5 +104,8 @@ void				exit_term(void)
 	ft_putstr_fd(tgetstr("te", NULL), 0);
 	ft_putstr_fd(tgetstr("ve", NULL), 0);
 	freelst(&term);
-	exit(EXIT_SUCCESS);
+	if (val == 1)
+		exit(EXIT_SUCCESS);
+	else
+		exit(EXIT_FAILURE);
 }

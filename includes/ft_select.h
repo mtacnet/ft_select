@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 13:32:22 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/22 15:04:03 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/30 16:18:01 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 ** MAIN_FUNCTIONS
 */
 
-t_elem				*get_arg(char **argv);
 void				core(t_elem **e);
 void				sig(void);
 void				display_list(t_elem **e, struct winsize ws, int arg_sz);
 void				manage_termcap(char *buff, char *arg, int nb);
-void				exit_term(void);
+void				exit_term(int val);
 void				move_cursor(int val, t_elem *tmp, t_elem *prev, t_elem **e);
 void				empty_list(t_elem **e);
 void				reset_term(void);
@@ -39,5 +38,6 @@ struct termios		get_term(int val);
 t_elem				*check_next(t_elem *tmp);
 t_elem				*check_prev(t_elem *tmp, t_elem **e);
 t_elem				*last_elem(t_elem **e);
+t_elem				*get_arg(char **argv);
 
 #endif

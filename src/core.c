@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:51:50 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/22 15:04:08 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/11/30 16:44:37 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		empty_list(t_elem **e)
 		tmp = tmp->next;
 	}
 	if (i == 0)
-		exit_term();
+		exit_term(1);
 }
 
 void			core(t_elem **e)
