@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 12:25:18 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/30 16:21:22 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/02 15:03:21 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		catch_exit_sig(int sig)
 
 static void		catch_resize_signal(int sig)
 {
-	t_elem		*e;
+	t_elem				*e;
 	struct winsize		ws;
 
 	e = NULL;
@@ -29,13 +29,13 @@ static void		catch_resize_signal(int sig)
 		e = get_arg(NULL);
 		ws = get_screen_sz(1);
 		ft_putstr_fd(tgetstr("cl", NULL), 0);
-		display_list(&e, ws, check_arg_size(&e, ws));
+		display_list(&e, ws, check_arg_size(&e));
 	}
 }
 
 static void		catch_tmp_signal(int sig)
 {
-	char	cmd[2];
+	char			cmd[2];
 	struct termios	t;
 
 	if (sig == SIGTSTP)
@@ -67,17 +67,17 @@ static void		catch_fg(int sig)
 		init_term(&ex);
 		ft_putstr_fd(tgetstr("vi", NULL), 0);
 		ft_putstr_fd(tgetstr("cl", NULL), 0);
-		display_list(&e, ws, check_arg_size(&e, ws));
-		signal(SIGTSTP, catch_tmp_signal); // Ctrl-Z
+		display_list(&e, ws, check_arg_size(&e));
+		signal(SIGTSTP, catch_tmp_signal);
 	}
 }
 
 void			sig(void)
 {
-	signal(SIGTSTP, catch_tmp_signal); // Ctrl-Z
-	signal(SIGWINCH, catch_resize_signal); // Resize Screen
+	signal(SIGTSTP, catch_tmp_signal);
+	signal(SIGWINCH, catch_resize_signal);
 	signal(SIGCONT, catch_fg);
-	signal(SIGINT, catch_exit_sig); // Ctrl-C
+	signal(SIGINT, catch_exit_sig);
 	signal(SIGABRT, catch_exit_sig);
 	signal(SIGHUP, catch_exit_sig);
 	signal(SIGPIPE, catch_exit_sig);

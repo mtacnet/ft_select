@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   manage.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/02 14:57:26 by mtacnet           #+#    #+#             */
+/*   Updated: 2017/12/02 15:08:43 by mtacnet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_select.h"
 
 static void		manage_key(char *buff, t_elem *tmp, t_elem *prev, t_elem **e)
@@ -29,7 +41,7 @@ static int		return_pos(t_elem **e)
 	return (i);
 }
 
-int		manage(char *buff, t_elem **e, int pos)
+int				manage(char *buff, t_elem **e, int pos)
 {
 	t_elem		*tmp;
 	t_elem		*prev;

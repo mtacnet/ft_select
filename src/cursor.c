@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cursor.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/02 14:57:00 by mtacnet           #+#    #+#             */
+/*   Updated: 2017/12/02 15:08:43 by mtacnet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_select.h"
 
 static void		remove_elem(t_elem *tmp, t_elem **e, t_elem *prev)
@@ -17,7 +29,7 @@ static void		select_elem(t_elem *tmp, t_elem **e, t_elem *prev)
 	move_cursor(1, tmp, prev, e);
 }
 
-void		display_elem(t_elem **e)
+void			display_elem(t_elem **e)
 {
 	t_elem		*tmp;
 	int			i;
@@ -33,7 +45,7 @@ void		display_elem(t_elem **e)
 			if (i != 0)
 				ft_putstr_fd(" ", 1);
 			ft_putstr_fd(tmp->content, 1);
-				i++;
+			i++;
 		}
 		tmp = tmp->next;
 	}

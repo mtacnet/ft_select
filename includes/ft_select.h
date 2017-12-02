@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 13:32:22 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/30 16:18:01 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/02 15:08:43 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void				empty_list(t_elem **e);
 void				reset_term(void);
 void				init_term(struct termios *term);
 void				display_elem(t_elem **e);
-int					check_arg_size(t_elem **e, struct winsize ws);
+int					check_arg_size(t_elem **e);
 int					manage(char *buff, t_elem **e, int pos);
 int					check_display(t_elem **e, struct winsize ws, int nb_words);
 struct winsize		get_screen_sz(int val);

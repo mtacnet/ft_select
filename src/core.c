@@ -6,13 +6,13 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:51:50 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/30 16:44:37 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/02 15:08:43 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
 
-int				check_arg_size(t_elem **e, struct winsize ws)
+int				check_arg_size(t_elem **e)
 {
 	int		i;
 	t_elem	*head;
@@ -21,15 +21,12 @@ int				check_arg_size(t_elem **e, struct winsize ws)
 	head = (*e);
 	while ((*e) != NULL)
 	{
-		if (ft_strlenint((*e)->content) > i)
+		if ((*e)->del == 0 && ft_strlenint((*e)->content) > i)
 			i = ft_strlenint((*e)->content);
 		(*e) = (*e)->next;
 	}
 	(*e) = head;
-	if (i > ws.ws_col)
-		return (-1);
-	else
-		return (i);
+	return (i);
 }
 
 static void		clear_buff(char *buff)
@@ -40,7 +37,7 @@ static void		clear_buff(char *buff)
 	buff[3] = 0;
 }
 
-void		empty_list(t_elem **e)
+void			empty_list(t_elem **e)
 {
 	t_elem		*tmp;
 	int			i;
@@ -66,15 +63,14 @@ void			core(t_elem **e)
 
 	pos = 1;
 	ws = get_screen_sz(1);
-	if ((arg_sz = check_arg_size(e, ws)) == -1)
-		ft_putendl_fd("PLEASE RESIZE SCREEN", 2);
+	arg_sz = check_arg_size(e);
 	get_term(0);
 	ft_putstr_fd(tgetstr("ti", NULL), 0);
 	ft_putstr_fd(tgetstr("vi", NULL), 0);
 	(*e)->ul = 1;
 	while (1)
 	{
-		display_list(e, get_screen_sz(0), arg_sz);
+		display_list(e, get_screen_sz(0), check_arg_size(e));
 		clear_buff(buff);
 		read(0, buff, 3);
 		ft_putstr_fd(tgetstr("cl", NULL), 0);

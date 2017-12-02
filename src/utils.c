@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:51:57 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/30 16:47:44 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/02 15:08:43 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_elem				*get_arg(char **argv)
 ** init_term: Initialise le terminal avec les valeurs indiquées dans la fonction
 */
 
-void			init_term(struct termios *term)
+void				init_term(struct termios *term)
 {
 	term->c_lflag &= ~(ICANON);
 	term->c_lflag &= ~(ECHO);
@@ -97,12 +97,18 @@ struct termios		get_term(int val)
 
 void				exit_term(int val)
 {
-	t_elem		*term;
-
+	t_elem				*term;
+	struct termios		tm;
+	
 	term = get_arg(NULL);
-	get_term(0);
 	ft_putstr_fd(tgetstr("te", NULL), 0);
 	ft_putstr_fd(tgetstr("ve", NULL), 0);
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
+	if (tcgetattr(0, &tm) == -1)
+		exit(EXIT_FAILURE);
+	tm.c_lflag = (ICANON | ECHO);
+	if (tcsetattr(0, 0, &tm) == -1)
+		exit(EXIT_FAILURE);
 	freelst(&term);
 	if (val == 1)
 		exit(EXIT_SUCCESS);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/02 14:58:35 by mtacnet           #+#    #+#             */
+/*   Updated: 2017/12/02 14:59:10 by mtacnet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_select.h"
 
 t_elem		*check_prev(t_elem *tmp, t_elem **e)
@@ -11,7 +23,7 @@ t_elem		*check_prev(t_elem *tmp, t_elem **e)
 			prev = last_elem(e);
 		else
 			while (prev->nb < (tmp->nb - 1))
-					prev = prev->next;
+				prev = prev->next;
 	}
 	if (prev->del == 0)
 		return (prev);
@@ -39,6 +51,7 @@ t_elem		*check_next(t_elem *tmp)
 t_elem		*last_elem(t_elem **e)
 {
 	t_elem		*tmp;
+
 	tmp = (*e);
 	while (tmp->next != NULL)
 		tmp = tmp->next;
