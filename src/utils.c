@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:51:57 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/02 15:08:43 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/02 15:17:42 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void				exit_term(int val)
 {
 	t_elem				*term;
 	struct termios		tm;
-	
+
 	term = get_arg(NULL);
 	ft_putstr_fd(tgetstr("te", NULL), 0);
 	ft_putstr_fd(tgetstr("ve", NULL), 0);
