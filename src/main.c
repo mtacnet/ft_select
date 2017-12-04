@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:52:07 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/02 15:08:43 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/04 12:21:51 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int				main(int argc, char **argv)
 		if (tgetent(NULL, term) == ERR)
 			exit(EXIT_FAILURE);
 		get_term(1);
+		get_term(3);
 		e = get_arg(argv);
 		core(&e);
 	}

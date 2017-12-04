@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 14:58:35 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/02 14:59:10 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/04 12:21:53 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ t_elem		*last_elem(t_elem **e)
 
 void		reset_term(void)
 {
-	t_elem		*term;
+	struct termios		tm;
 
-	term = get_arg(NULL);
-	get_term(0);
+	tm = get_term(4);
+	if (tcsetattr(0, TCSADRAIN, &tm) == -1)
+		exit(EXIT_FAILURE);
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
 	ft_putstr_fd(tgetstr("te", NULL), 0);
 	ft_putstr_fd(tgetstr("ve", NULL), 0);
 }

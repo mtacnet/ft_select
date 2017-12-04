@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:51:57 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/02 15:17:42 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/04 12:21:49 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,20 @@ void				init_term(struct termios *term)
 struct termios		get_term(int val)
 {
 	static struct termios	term;
+	static struct termios	save_term;
 
 	if (val == 1)
 	{
 		if (tcgetattr(0, &term) == -1)
 			exit(EXIT_FAILURE);
 	}
-	else
+	else if (val == 2)
 		init_term(&term);
+	else if (val == 3)
+		if (tcgetattr(0, &save_term) == -1)
+			exit(EXIT_FAILURE);
+	if (val == 4)
+		return (save_term);
 	return (term);
 }
 
@@ -98,17 +104,12 @@ struct termios		get_term(int val)
 void				exit_term(int val)
 {
 	t_elem				*term;
-	struct termios		tm;
 
 	term = get_arg(NULL);
+	reset_term();
 	ft_putstr_fd(tgetstr("te", NULL), 0);
 	ft_putstr_fd(tgetstr("ve", NULL), 0);
 	ft_putstr_fd(tgetstr("cl", NULL), 0);
-	if (tcgetattr(0, &tm) == -1)
-		exit(EXIT_FAILURE);
-	tm.c_lflag = (ICANON | ECHO);
-	if (tcsetattr(0, 0, &tm) == -1)
-		exit(EXIT_FAILURE);
 	freelst(&term);
 	if (val == 1)
 		exit(EXIT_SUCCESS);

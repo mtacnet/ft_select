@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 16:10:39 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/02 14:57:53 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/04 12:41:04 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		check_display(t_elem **e, struct winsize ws, int nb_words)
 		tmp = tmp->next;
 	}
 	nb = i / ws.ws_row;
-	if (nb >= nb_words - 1)
+	if (nb >= nb_words)
 		return (1);
 	else
 		return (0);
@@ -42,7 +42,7 @@ void	display_list(t_elem **e, struct winsize ws, int arg_sz)
 	tmp = (*e);
 	nb_words = 0;
 	if (arg_sz != 0)
-		nb_words = (ws.ws_col - 3) / arg_sz + 1;
+		nb_words = (ws.ws_col) / (arg_sz + 1);
 	if (check_display(e, ws, nb_words) == 1)
 		ft_putendl_fd("PLEASE RESIZE THE WINDOW TERM", 2);
 	else
@@ -60,7 +60,7 @@ void	display_list(t_elem **e, struct winsize ws, int arg_sz)
 				ft_putstr_fd(tgetstr("me", NULL), 0);
 				k = ft_strlenint(tmp->content) - 1;
 				i++;
-				if (i != nb_words - 1)
+				if (i != nb_words)
 				{
 					while (k++ < arg_sz)
 						ft_putstr_fd(" ", 0);

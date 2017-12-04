@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:51:50 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/02 15:08:43 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/04 12:21:57 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void			core(t_elem **e)
 	pos = 1;
 	ws = get_screen_sz(1);
 	arg_sz = check_arg_size(e);
-	get_term(0);
+	get_term(2);
 	ft_putstr_fd(tgetstr("ti", NULL), 0);
 	ft_putstr_fd(tgetstr("vi", NULL), 0);
 	(*e)->ul = 1;

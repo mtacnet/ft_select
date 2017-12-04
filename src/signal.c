@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 12:25:18 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/02 15:03:21 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/04 12:27:30 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void		catch_tmp_signal(int sig)
 		cmd[0] = t.c_cc[VSUSP];
 		cmd[1] = '\0';
 		reset_term();
-		ft_putstr_fd(tgetstr("ve", NULL), 0);
 		signal(SIGTSTP, SIG_DFL);
 		ioctl(0, TIOCSTI, cmd);
 		if (tcsetattr(0, TCSADRAIN, &t) == -1)
