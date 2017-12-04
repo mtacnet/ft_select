@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:51:57 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/04 12:21:49 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/04 14:13:07 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,6 @@ void				exit_term(int val)
 
 	term = get_arg(NULL);
 	reset_term();
-	ft_putstr_fd(tgetstr("te", NULL), 0);
-	ft_putstr_fd(tgetstr("ve", NULL), 0);
-	ft_putstr_fd(tgetstr("cl", NULL), 0);
 	freelst(&term);
 	if (val == 1)
 		exit(EXIT_SUCCESS);

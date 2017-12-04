@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 14:57:00 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/02 15:08:43 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/04 14:14:22 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			display_elem(t_elem **e)
 	i = 0;
 	while (tmp != NULL)
 	{
-		if (tmp->hl == 1)
+		if (tmp->hl == 1 && tmp->del == 0)
 		{
 			if (i != 0)
 				ft_putstr_fd(" ", 1);

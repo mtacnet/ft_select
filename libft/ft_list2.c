@@ -6,7 +6,7 @@
 /*   By: mtacnet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 11:33:04 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/11/22 12:06:50 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/04 14:03:05 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		add_element(t_elem **element, char *arg, int nb, int arg_sz)
 	(*element)->arg_sz = arg_sz;
 }
 
-void	push_elemx(t_elem **lst, char *content, int nb, int content_sz)
+void			push_elemx(t_elem **lst, char *content, int nb, int content_sz)
 {
 	t_elem		*element;
 	t_elem		*head;
