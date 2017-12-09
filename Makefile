@@ -6,7 +6,7 @@
 #    By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/11 14:50:14 by mtacnet           #+#    #+#              #
-#    Updated: 2017/11/22 13:33:12 by mtacnet          ###   ########.fr        #
+#    Updated: 2017/12/09 11:51:23 by mtacnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC			= main.c \
 			  signal.c \
 			  display.c \
 			  manage.c \
-			  cursor.c
+			  cursor.c \
+			  bonus.c
 
 OBJ			= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

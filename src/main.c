@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:52:07 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/04 14:18:53 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/09 12:19:23 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 static void		usage(void)
 {
 	ft_putendl_fd("usage: ./ft_select [arg...]", 2);
+	ft_putendl_fd("- Use the lower-case 'i' key to reverse the selection.", 2);
+	ft_putendl_fd("- Use the lower-case 'a' key to select all items.", 2);
+	ft_putendl_fd("- Use the lower-case 'q' key to deselect all items.", 2);
 	exit(EXIT_FAILURE);
 }
 

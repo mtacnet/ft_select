@@ -6,7 +6,7 @@
 /*   By: mtacnet <mtacnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:51:50 by mtacnet           #+#    #+#             */
-/*   Updated: 2017/12/04 14:06:00 by mtacnet          ###   ########.fr       */
+/*   Updated: 2017/12/09 12:11:01 by mtacnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void			core(t_elem **e)
 		read(0, buff, 3);
 		ft_putstr_fd(tgetstr("cl", NULL), 0);
 		pos = manage(buff, e, pos);
+		bonus(buff, e);
 		if (buff[0] == 10 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
 			display_elem(e);
 	}
